@@ -5,31 +5,46 @@ class Product{
     this.name = name;
     this.price = price;
   }
+
+  getDuration(){
+    return "OK";
+  }
+
   toString(currency, rateCurrency){
     var currency = currency || '$';
     var rateCurrency = rateCurrency || 1;
-    return `${chalk.yellow(this.name)} cost ${chalk.red(this.price * rateCurrency)} ${currency}`;
+    return `${chalk.yellow(this.name)} cost ${chalk.red(this.price * rateCurrency)} ${currency}, duration: ${this.getDuration()}`;
   }
 }
 
 class Book extends Product{
-  constructor(name, price, isbn){
+  constructor(name, price, isbn, minDuration, maxDuration){
     super(name,price);
     this.isbn = isbn;
+  }
+  getDuration(){
+    return Math.round((this.minDuration + this.maxDuration)/2*100)/100;
   }
 }
 
 class DVD extends Product{
-  constructor(name, price, moovie){
+  constructor(name, price, moovie, runningTime){
     super(name,price);
     this.moovie = moovie;
+    this.runningTime = runningTime;
+  }
+  getDuration(){
+    return Math.round(this.runningTime*100)/100;
   }
 }
 
 class VideoGame extends Product{
-  constructor(name, price, platform){
+  constructor(name, price, platform, minDuration, maxDuration){
     super(name,price);
     this.platform = platform;
+  }
+  getDuration(){
+    return Math.round((this.minDuration + this.maxDuration)/2*100)/100;
   }
 }
 

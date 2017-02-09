@@ -1,6 +1,9 @@
 var expect = require('chai').expect;
 
 var store = require ('../src/store').store;
+var product = require ('../src/product').Book;
+var product = require ('../src/product').DVD;
+var product = require ('../src/product').VideoGame;
 
 describe('Store', function() {
 
@@ -22,6 +25,22 @@ describe('Store', function() {
       store.products[5],
       store.products[6],
       store.products[10]])).to.be.equal(99.22);
+  });
+
+});
+
+describe('Product', function() {
+
+  it('with getDuration() for a Book should return a Number', function() {
+    expect(Book.toString()).to.be.a('number');
+  });
+
+  it('with getDuration() for a DVD should return a Number', function() {
+    expect(DVD.toString()).to.be.a('number');
+  });
+
+  it('with getDuration() for a Video Game should return a Number', function() {
+    expect(VideoGame.toString()).to.be.a('number');
   });
 
 });
