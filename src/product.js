@@ -1,6 +1,40 @@
 var chalk = require('chalk');
 
-function Product(name, price) {
+class Product{
+  constructor(name, price){
+    this.name = name;
+    this.price = price;
+  }
+  toString(currency, rateCurrency){
+    var currency = currency || '$';
+    var rateCurrency = rateCurrency || 1;
+    return `${chalk.yellow(this.name)} cost ${chalk.red(this.price * rateCurrency)} ${currency}`;
+  }
+}
+
+class Book extends Product{
+  constructor(name, price, isbn){
+    super(name,price);
+    this.isbn = isbn;
+  }
+}
+
+class DVD extends Product{
+  constructor(name, price, moovie){
+    super(name,price);
+    this.moovie = moovie;
+  }
+}
+
+class VideoGame extends Product{
+  constructor(name, price, platform){
+    super(name,price);
+    this.platform = platform;
+  }
+}
+
+/* Ancien code
+/*function Product(name, price) {
   this.name = name;
   this.price = price;
   this.toString = function(currency, rateCurrency) {
@@ -33,7 +67,7 @@ function VideoGame(name, price, platform){
 VideoGame.prototype = Object.create(Product.prototype, {
   constructor: {value: VideoGame}
 });
-
+*/
 
 module.exports = {
   Book: Book,
